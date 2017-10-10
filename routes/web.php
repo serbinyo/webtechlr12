@@ -31,6 +31,8 @@ Route::get('interests', 'InterestsController@interests');
 
 Route::get('myblog', 'MyblogController@myblog');
 
+Route::post('commentsend', 'AjaxController@commentsend');
+
 Route::get('photo', 'PhotoController@photo');
 
 Route::get('registration', 'RegistrationController@registration');

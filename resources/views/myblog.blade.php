@@ -13,16 +13,67 @@ Functions::add_guest_statistic();*/
 <script>
 	$(document).ready(function()
 		{
-			var addbtn = document.getElementsByClassName('btnadd'),
-			boxadd = document.getElementsByClassName('boxadd');
-			for (i=0; i< addbtn.length; i++)
-			addbtn[i].onclick = function()
-			{
-				alert("OK class");
-			};
+			var addbtn = document.getElementsByClassName('btnopenblock'),
+			boxadd = document.getElementsByClassName('addbox'),
+			btnsend = document.getElementsByClassName('btnsend'),
+			comments = document.getElementsByClassName('comment');
+			for (i=0; i< addbtn.length; i++){
+				btnOpenId = addbtn[i].id;
+				boxId = boxadd[i].id;
+				btnSendId = btnsend[i].id;
+				commentId = comments[i].id
+				addHideHandler(btnOpenId, boxId);
+				sendComment(btnSendId, commentId);
+				
 
-
+			}
+			
 		});
+		
+	function addHideHandler(sourceId, targetId) {
+		var sourceNode = document.getElementById(sourceId)
+		var handler = function() {
+			var targetNode = document.getElementById(targetId)
+			var elementStyle = targetNode.style.display;
+			if (elementStyle === 'none')
+			targetNode.style.display = 'block'
+			else
+			targetNode.style.display = 'none'
+		}
+		sourceNode.onclick = handler
+	}
+	
+	function sendComment(buttonId, commentId){
+		var buttonNode = document.getElementById(buttonId);
+			
+		var handler = function() {
+			var comment = document.getElementById(commentId).value.replace(/<[^>]+>/g, '');
+			alert(comment);
+			$.ajax({
+					url: "commentsend",
+					data: ({text: comment}),
+					dataType: "html",
+					beforeSend: function () {
+						$("#information").text("Ожидание данных...");
+					},
+					success: function (data) {
+						if (data === 'yes') {
+							alert('yes');
+						} else if (data === 'no') {
+							alert('no');
+						} else {
+							alert('что то другое');
+						}
+					},
+					error: function(){
+						alert('Ошибка');
+					}
+					
+				});
+		}
+		buttonNode.onclick = handler
+	}
+
 	function drawComments(i, comment)
 	{
 		for (j = 0; j < comment.length; j++)
@@ -30,7 +81,6 @@ Functions::add_guest_statistic();*/
 			document.getElementById('commentsblock' + i).innerHTML += comment[j];
 			document.getElementById('commentsblock' + i).innerHTML += '<hr>';
 		}
-
 	}
 </script>
 
@@ -62,24 +112,19 @@ Functions::add_guest_statistic();*/
 	<div class='blog_body'>
 		Комментарии:<hr>
 		@foreach ($comments as $comment)
-
 		@if ($article->id === $comment->blogid)
-
 		{{$comment->date}}
 		{{$comment->author}}
 		написал: {{$comment->body}}<hr>
-
 		@endif
-
 		@endforeach
-
-		<button id='btnaddcmnt{{$article->id}}' class="btnadd">
+		<button id='btnaddcmnt{{$article->id}}' class="btnopenblock">
 			Комментировать
 		</button><br>
 		<div id="cmntblock{{$article->id}}" class="addbox" style='display: none'>
-			<textarea id='comment' cols='30' rows='10'>
-			</textarea><br>
-			<button id='button'>
+			<textarea id='comment{{$article->id}}' class="comment" cols='30' rows='10'>
+			</textarea><div id="information"></div><br>
+			<button id='button{{$article->id}}' class="btnsend">
 				Отправить
 			</button>
 		</div>

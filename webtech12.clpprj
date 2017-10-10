@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="C:\OpenServer\domains\wtlr12\webtech12.clpprj">
 	<settings><PM_URL><![CDATA[C:/OpenServer/domains/lrvlprj.loc/]]></PM_URL><PM_HOME_URL><![CDATA[C:/OpenServer/domains/lrvlprj.loc/]]></PM_HOME_URL><PM_LIBS><![CDATA[]]></PM_LIBS><PM_FTP_CONNECTION><![CDATA[]]></PM_FTP_CONNECTION><PM_FTP_DIR><![CDATA[]]></PM_FTP_DIR><PM_FTP_UPLOAD_ON_SAVE><![CDATA[INT:0]]></PM_FTP_UPLOAD_ON_SAVE></settings><removed value=";"/><added value=""/><lastopfiles>
-		<file name="C:\OpenServer\domains\wtlr12\resources\views\vendor\pagination\default.blade.php"/>
-		<file name="C:\OpenServer\domains\wtlr12\app\Http\Controllers\MyblogController.php"/>
-		<file name="C:\OpenServer\domains\wtlr12\resources\views\myblog.blade.php"/>
-		<file name="C:\OpenServer\domains\wtlr12\routes\web.php"/>
-		<file name="C:\OpenServer\domains\wtlr12\app\Http\Controllers\TestpageController.php"/>
-		<file name="C:\OpenServer\domains\wtlr12\resources\views\testpage.blade.php"/>
-		<file name="C:\OpenServer\domains\wtlr12\app\Blogarticle.php"/>
-		<file name="C:\OpenServer\domains\wtlr12\app\Testresult.php"/>
-		<file name="C:\OpenServer\domains\wtlr12\public\css\style.css"/>
-		<file name="C:\OpenServer\domains\wtlr12\resources\views\photo.blade.php"/>
-		<file name="C:\OpenServer\domains\wtlr12\public\css\photoalbum.css"/>
-		<file name="C:\OpenServer\domains\wtlr12\public\js\fancybox\jquery.fancybox-1.3.4.css"/>
 	</lastopfiles>
 	<errors version="5.11">
 		<errfile name="C:\OpenServer\domains\wtlr12\vendor\webmozart\assert\src\Assert.php">
