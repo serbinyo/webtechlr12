@@ -14,7 +14,7 @@ class TestpageController extends Controller
 
 	public function testpage()
 	{
-		return view('testpage')->with(['testresults'=>$this->testresults]);;
+		return view('testpage')->with(['user'=> $this->user, 'testresults'=>$this->testresults]);;
 	}
 
 	public function storeOrShow(Request $request)

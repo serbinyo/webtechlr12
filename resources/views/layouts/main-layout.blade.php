@@ -51,11 +51,19 @@
 				</div>
 
 				@endif
+				
+				<div id="current-date"></div>
+				
+				@if($user)
 
+				<div class='login_form_container'>
+				Пользователь: {{$user->fio}}
+				</div>
+				
+				@endif
+				
 				@yield('content')
-
 			</main>
-
 		</div>
 		<footer>
 			<p>

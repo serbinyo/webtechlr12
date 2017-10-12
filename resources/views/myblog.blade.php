@@ -7,11 +7,11 @@ Functions::add_guest_statistic();*/
 @extends('layouts.main-layout')
 
 @section('links')
-<script type="text/javascript" src="../../public/js/jquery-1.4.3.min.js">
+<script type="text/javascript" src="../../public/js/jq/jquery.js">
 </script>
 
 <script>
-	$(document).ready(function()
+	jQuery(document).ready(function()
 		{
 			var addbtn = document.getElementsByClassName('btnopenblock'),
 			boxadd = document.getElementsByClassName('addbox'),
@@ -23,12 +23,22 @@ Functions::add_guest_statistic();*/
 				btnSendId = btnsend[i].id;
 				commentId = comments[i].id
 				addHideHandler(btnOpenId, boxId);
-				sendComment(btnSendId, commentId);
+				sendComment(btnSendId, commentId, boxId);
+				//submitOff(boxId, commentId ,btnSendId);
 				
 
 			}
 			
 		});
+		
+	function submitOff(boxId, commentId, inputBtn){
+		var btn = '#'+inputBtn;
+		var form = '#'+boxId;
+		jQuery('form').on('click',btn,function(e) {
+		alert (btn);
+		e.preventDefault();
+		});
+	}	
 		
 	function addHideHandler(sourceId, targetId) {
 		var sourceNode = document.getElementById(sourceId)
@@ -43,32 +53,22 @@ Functions::add_guest_statistic();*/
 		sourceNode.onclick = handler
 	}
 	
-	function sendComment(buttonId, commentId){
+	function sendComment(buttonId, commentId, boxId){
 		var buttonNode = document.getElementById(buttonId);
-			
+	 	var formId = '#'+boxId;
 		var handler = function() {
 			var comment = document.getElementById(commentId).value.replace(/<[^>]+>/g, '');
-			alert(comment);
-			$.ajax({
-					url: "commentsend",
-					data: ({text: comment}),
-					dataType: "html",
-					beforeSend: function () {
-						$("#information").text("Ожидание данных...");
-					},
-					success: function (data) {
-						if (data === 'yes') {
-							alert('yes');
-						} else if (data === 'no') {
-							alert('no');
-						} else {
-							alert('что то другое');
-						}
+			jQuery.ajax({
+					url: jQuery(formId).attr('action'),
+					data: {text: comment},
+					type: 'POST',
+					dataType: "JSON",
+					success: function () {
+						alert('Удача');
 					},
 					error: function(){
 						alert('Ошибка');
-					}
-					
+					}			
 				});
 		}
 		buttonNode.onclick = handler
@@ -87,10 +87,6 @@ Functions::add_guest_statistic();*/
 @endsection
 
 @section('content')
-<div id="current-date">
-</div>
-
-
 @foreach($articles as $article)
 
 <div class='blog_container'>
@@ -121,13 +117,12 @@ Functions::add_guest_statistic();*/
 		<button id='btnaddcmnt{{$article->id}}' class="btnopenblock">
 			Комментировать
 		</button><br>
-		<div id="cmntblock{{$article->id}}" class="addbox" style='display: none'>
+		<form id="cmntform{{$article->id}}" action="{{ route('comment.store')}}" method="post" class="addbox" style='display: none'>
 			<textarea id='comment{{$article->id}}' class="comment" cols='30' rows='10'>
 			</textarea><div id="information"></div><br>
-			<button id='button{{$article->id}}' class="btnsend">
-				Отправить
-			</button>
-		</div>
+			<input class="btnsend" type="submit" id="submit{{$article->id}}" value="Отправить" />
+			{{csrf_field()}}
+		</form>
 	</div>
 </div>
 @endforeach

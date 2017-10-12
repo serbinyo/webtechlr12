@@ -8,7 +8,7 @@ class ContactController extends Controller
 {
 	public function contact()
 	{
-		return view('contact');
+		return view('contact')->with(['user'=> $this->user]);
 	}
 
 	public function send(Request $request)

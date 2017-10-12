@@ -30,7 +30,7 @@ class GuestbookController extends Controller
 			echo '<h3 style="text-align: center;">Нет файла с записями</h3>';
 		}
 
-		return view('guestbook')->with(['table'=>$tbl]);
+		return view('guestbook')->with(['user'=> $this->user, 'table'=>$tbl]);
 	}
 
 	public function store(Request $request)

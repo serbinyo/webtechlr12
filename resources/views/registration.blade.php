@@ -88,20 +88,9 @@ Functions::add_guest_statistic();
 @endsection
 @section('content')
 
-                <div id="current-date"></div>
-
-                <?php
-                /*
-                if (isset($errors)) {
-                    $userValidator->ShowErrors();
-                }
-                */
-                ?>
-
-
                 <div class="blog_addcontainer">
                     <h3>Форма регистрации пользователя</h3>
-                    <form action="registration" method="post"  class="form" id="reg_form">
+                    <form action="{{route('registrate')}}" method="post"  class="form" id="reg_form">
                         <input type="hidden" name="action" value="reg_new" />
                         <div class="message js-form-message"></div>
 
@@ -146,6 +135,7 @@ Functions::add_guest_statistic();
                             </div>
                             <div class="clr"></div>
                         </div>
+                        {{csrf_field()}}
                     </form>
                 </div>
 

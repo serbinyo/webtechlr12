@@ -13,6 +13,8 @@
 
 Route::get('/', 'IndexController@index');
 
+Route::post('/', 'IndexController@auth')->name('indexAuthorize');
+
 Route::get('contact', 'ContactController@contact');
 
 Route::post('contact','ContactController@send')->name('contactSend');
@@ -31,10 +33,12 @@ Route::get('interests', 'InterestsController@interests');
 
 Route::get('myblog', 'MyblogController@myblog');
 
-Route::post('commentsend', 'AjaxController@commentsend');
-
 Route::get('photo', 'PhotoController@photo');
 
 Route::get('registration', 'RegistrationController@registration');
 
+Route::post('registration', 'RegistrationController@addUser')->name('registrate');
+
 Route::get('study', 'StudyController@study');
+
+Route::resource('comment', 'CommentController', ['only'=>['store']] );

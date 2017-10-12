@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class PhotoController extends Controller
 {
     public function photo(){
-		return view('photo');
+		return view('photo')->with(['user'=> $this->user]);
 	}
 }
