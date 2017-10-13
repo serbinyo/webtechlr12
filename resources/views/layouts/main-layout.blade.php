@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<title>
 			Главная страница. Сайт Сербина Александра
 		</title>

@@ -12,6 +12,7 @@
 			comentform = document.getElementsByClassName('comentform'),
 			submit = document.getElementsByClassName('submit'),
 			comments = document.getElementsByClassName('comment');
+			var data = [];
 			for (i=0; i< addbtn.length; i++)
 			{
 				btnOpenId = addbtn[i].id;
@@ -27,7 +28,7 @@
 				//sendComment(submitId, commentId, comentformId);
 				//submitOff(comentformId, commentId ,submitId);
 
-				$(hashComentformId).on('click',hashSubmitId,function(e)
+				$(hashComentformId).on('click',hashSubmitId,function(e,i)
 				{
 					//alert(hashComentformId);
 					//alert (hashSubmitId);
@@ -42,28 +43,33 @@
 						text('Сохранение коментария').
 						fadeIn(500, function() {         //плавно показываем блок(500мс), затем выполняем функцию
 								
-						var data = $(hashComentformId).serializeArray();
-								
-						$.ajax({
-							
-							url: $(hashComentformId).attr('action'),
-							data: data,
-							type: 'POST',
-							datatype: 'JSON',
-							success: function(data) {
-								alert(data);
-								$('.wrap_result').
-									css('color','blue').
-									text('Комментарий сохранен').
-									fadeOut(2500);
-							},
-							error: function() {
-								$('.wrap_result').
-									css('color','red').
-									text('Ошибка').
-									fadeOut(2500);
-							}										
-						});								
+						
+						var d = $(hashComentformId).serializeArray();
+						data.push(d);
+						
+						
+						document.write(data);	
+//						$.ajax({
+//							
+//							url: $(hashComentformId).attr('action'),
+//							data: data,
+//							type: 'POST',
+//							headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+//							datatype: 'JSON',
+//							success: function(data) {
+//								alert(data);
+//								$('.wrap_result').
+//									css('color','blue').
+//									text('Комментарий сохранен').
+//									fadeOut(2500);
+//							},
+//							error: function() {
+//								$('.wrap_result').
+//									css('color','red').
+//									text('Ошибка').
+//									fadeOut(2500);
+//							}										
+//						});								
 					});
 				});
 			}
@@ -137,7 +143,7 @@
 		
 		<form id="comentform{{$article->id}}" action="{{ route('comment.store')}}" method="post" class="comentform" style='display: none'>
 		
-			<textarea id='comment{{$article->id}}' class="comment" cols='30' rows='10'></textarea>
+			<textarea id='comment{{$article->id}}' class="comment" name="comment_text" cols='30' rows='10'></textarea>
 			<div id="information"></div><br>
 			<input id="comment_post_ID" type="hidden" name="comment_post_ID" value="{{ $article->id }}" />
 			<input id="comment_user" type="hidden" name="comment_user" value="{{ $user->login }}" />

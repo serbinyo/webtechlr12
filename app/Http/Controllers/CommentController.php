@@ -34,7 +34,9 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        echo json_encode(['hello'=>'world']);
+    	$data = $request->except('_token');
+    	
+        echo json_encode($data);
         exit();
     }
 
