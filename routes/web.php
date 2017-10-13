@@ -49,6 +49,8 @@ Route::post('admin', 'Admin\IndexAdminController@auth')->name('adminAuthorize');
 
 Route::get('admin_blogeditor', 'Admin\BlogeditorAdminController@blogeditor');
 
+Route::resource('admin_blogupdatenow', 'Admin\EditorAdminController@edit');
+
 Route::get('admin_blogloadfile', 'Admin\BlogloadfileAdminController@blogloadfile');
 
 Route::get('admin_guestbookloadfile', 'Admin\GuestbookloadfileAdminController@guestbookloadfile');

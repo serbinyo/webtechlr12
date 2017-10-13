@@ -62,6 +62,8 @@
 				@endif
 				
 				@yield('content')
+				<div class="wrap_result"></div>
+				
 			</main>
 		</div>
 		<footer>

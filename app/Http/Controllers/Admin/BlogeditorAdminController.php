@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
+
 class BlogeditorAdminController extends AdminController
 {
     public function blogeditor()
 	{
-		return view('admin.blogeditor')->with(['admin'=>$this->admin, 'admins'=>$this->admins]);
+		$articles = DB::table('Blogarticles')->orderBy('date', 'desc')->paginate(5);
+		return view('admin.blogeditor')->with(['admin'=>$this->admin, 'admins'=>$this->admins, 'articles'=>$articles]);
 	}
 }

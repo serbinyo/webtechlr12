@@ -112,6 +112,8 @@
                         
                     </form><br><br><br><br>
                     
+                    @if($user)
+                    
                     <h1>Проверить результат:</h1> 
                     <form action="{{route('resultStoreOrShow')}}" method="post">
                         <div class="form-group">
@@ -138,6 +140,7 @@
 				         <div class='blog_date'>Дата ппрохождения теста: {{$testresult->date}}</div>
 				         </div><br>';
                     
-                    @endforeach                   
+                    @endforeach 
+                    @endif                  
                 </section>
 @endsection

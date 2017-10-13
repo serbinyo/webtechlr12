@@ -1,42 +1,79 @@
 @extends('layouts.main-layout')
 
 @section('links')
-<script type="text/javascript" src="../../public/js/jq/jquery.js">
-</script>
+<script type="text/javascript" src="../../public/js/jq/jquery.js"></script>
+<!--<script type="text/javascript" src="../../public/js/comments.js"></script>-->
 
 <script>
-	jQuery(document).ready(function()
+	jQuery(document).ready(function($)
 		{
-			var addbtn = document.getElementsByClassName('btnopenblock'),
-			boxadd = document.getElementsByClassName('addbox'),
-			btnsend = document.getElementsByClassName('btnsend'),
-			comments = document.getElementsByClassName('comment');
-			for (i=0; i< addbtn.length; i++){
-				btnOpenId = addbtn[i].id;
-				boxId = boxadd[i].id;
-				btnSendId = btnsend[i].id;
-				commentId = comments[i].id
-				addHideHandler(btnOpenId, boxId);
-				sendComment(btnSendId, commentId, boxId);
-				//submitOff(boxId, commentId ,btnSendId);
-				
 
+			var addbtn = document.getElementsByClassName('btnopenblock'),
+			comentform = document.getElementsByClassName('comentform'),
+			submit = document.getElementsByClassName('submit'),
+			comments = document.getElementsByClassName('comment');
+			for (i=0; i< addbtn.length; i++)
+			{
+				btnOpenId = addbtn[i].id;
+
+				comentformId = comentform[i].id;
+				hashComentformId = "#"+comentformId;
+
+				submitId = submit[i].id;
+				hashSubmitId = "#"+submitId;
+
+				commentId = comments[i].id
+				addHideHandler(btnOpenId, comentformId);
+				//sendComment(submitId, commentId, comentformId);
+				//submitOff(comentformId, commentId ,submitId);
+
+				$(hashComentformId).on('click',hashSubmitId,function(e)
+				{
+					//alert(hashComentformId);
+					//alert (hashSubmitId);
+					e.preventDefault();
+
+					//определим переменную - выборка элемента для которого в данный момент зарегистрирован обработчик click (кнопка Отправить )
+					var comParent = $(this);
+
+					//информация о происходящем в ассинхронном запросе для пользователя
+					$('.wrap_result').
+						css('color','green').
+						text('Сохранение коментария').
+						fadeIn(500, function() {         //плавно показываем блок(500мс), затем выполняем функцию
+								
+						var data = $(hashComentformId).serializeArray();
+								
+						$.ajax({
+							
+							url: $(hashComentformId).attr('action'),
+							data: data,
+							type: 'POST',
+							datatype: 'JSON',
+							success: function(data) {
+								alert(data);
+								$('.wrap_result').
+									css('color','blue').
+									text('Комментарий сохранен').
+									fadeOut(2500);
+							},
+							error: function() {
+								$('.wrap_result').
+									css('color','red').
+									text('Ошибка').
+									fadeOut(2500);
+							}										
+						});								
+					});
+				});
 			}
-			
 		});
-		
-	function submitOff(boxId, commentId, inputBtn){
-		var btn = '#'+inputBtn;
-		var form = '#'+boxId;
-		jQuery('form').on('click',btn,function(e) {
-		alert (btn);
-		e.preventDefault();
-		});
-	}	
-		
-	function addHideHandler(sourceId, targetId) {
+
+	function addHideHandler(sourceId, targetId)
+	{
 		var sourceNode = document.getElementById(sourceId)
-		var handler = function() {
+		var handler = function()
+		{
 			var targetNode = document.getElementById(targetId)
 			var elementStyle = targetNode.style.display;
 			if (elementStyle === 'none')
@@ -46,36 +83,15 @@
 		}
 		sourceNode.onclick = handler
 	}
-	
-	function sendComment(buttonId, commentId, boxId){
-		var buttonNode = document.getElementById(buttonId);
-	 	var formId = '#'+boxId;
-		var handler = function() {
-			var comment = document.getElementById(commentId).value.replace(/<[^>]+>/g, '');
-			jQuery.ajax({
-					url: jQuery(formId).attr('action'),
-					data: {text: comment},
-					type: 'POST',
-					dataType: "JSON",
-					success: function () {
-						alert('Удача');
-					},
-					error: function(){
-						alert('Ошибка');
-					}			
-				});
-		}
-		buttonNode.onclick = handler
-	}
 
-	function drawComments(i, comment)
-	{
-		for (j = 0; j < comment.length; j++)
-		{
-			document.getElementById('commentsblock' + i).innerHTML += comment[j];
-			document.getElementById('commentsblock' + i).innerHTML += '<hr>';
-		}
-	}
+//	function drawComments(i, comment)
+//	{
+//		for (j = 0; j < comment.length; j++)
+//		{
+//			document.getElementById('commentsblock' + i).innerHTML += comment[j];
+//			document.getElementById('commentsblock' + i).innerHTML += '<hr>';
+//		}
+//	}
 </script>
 
 @endsection
@@ -89,7 +105,7 @@
 			{{$article->title}}
 		</h3>
 	</div>
-	<div class='blog_image'>
+					<div class='blog_image'>
 		<img src='{{$article->image}}' width='250' alt='{{$article->image}}'/>
 	</div>
 	<div class='blog_body'>
@@ -98,26 +114,43 @@
 	<div class='blog_date'>
 		Дата публикации: {{$article->date}}
 	</div>
-
+	
+	@if($user)
+	
 	<div class='blog_body'>
 		Комментарии:<hr>
 		@foreach ($comments as $comment)
-		@if ($article->id === $comment->blogid)
+		@if($article->id === $comment->blogid)
+		
 		{{$comment->date}}
 		{{$comment->author}}
 		написал: {{$comment->body}}<hr>
+		
 		@endif
 		@endforeach
 		<button id='btnaddcmnt{{$article->id}}' class="btnopenblock">
 			Комментировать
 		</button><br>
-		<form id="cmntform{{$article->id}}" action="{{ route('comment.store')}}" method="post" class="addbox" style='display: none'>
-			<textarea id='comment{{$article->id}}' class="comment" cols='30' rows='10'>
-			</textarea><div id="information"></div><br>
-			<input class="btnsend" type="submit" id="submit{{$article->id}}" value="Отправить" />
+		
+		
+		
+		
+		<form id="comentform{{$article->id}}" action="{{ route('comment.store')}}" method="post" class="comentform" style='display: none'>
+		
+			<textarea id='comment{{$article->id}}' class="comment" cols='30' rows='10'></textarea>
+			<div id="information"></div><br>
+			<input id="comment_post_ID" type="hidden" name="comment_post_ID" value="{{ $article->id }}" />
+			<input id="comment_user" type="hidden" name="comment_user" value="{{ $user->login }}" />
+			<input class="submit" type="submit" id="submit{{$article->id}}" value="Отправить" />
+			
 			{{csrf_field()}}
+			
+			
 		</form>
 	</div>
+	
+	@endif
+	
 </div>
 @endforeach
 
