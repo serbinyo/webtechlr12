@@ -1,19 +1,6 @@
-<?php
-/*
-session_start();
-Functions::add_guest_statistic();
-*/
-?>
-
 @extends('layouts.main-layout')
 
 @section('content')
-
-	<div id="current-date">
-	</div>
-
-	<?php /*Functions::HelloUser();*/ ?>
-
 	<div class="blog_addcontainer">
 		<h3>
 			Форма добавления сообщения
@@ -78,6 +65,4 @@ Functions::add_guest_statistic();
 	</div>
 
 	{!!$table!!}
-
-
 @endsection

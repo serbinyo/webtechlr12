@@ -1,9 +1,3 @@
-
-<?php
-/*session_start();
-Functions::add_guest_statistic();*/
-?>
-
 @extends('layouts.main-layout')
 
 @section('links')
@@ -29,11 +23,8 @@ Functions::add_guest_statistic();*/
 @endsection
 
 @section('content')
-		
-                <div id="current-date"></div>
                 <?php
-                /*Functions::HelloUser();*/
-
+                
                 $fotos = array();
                 $fotos[0] = "../../public/img/stadiums/s1.jpg";
                 $fotos[1] = "../../public/img/stadiums/s2.jpg";

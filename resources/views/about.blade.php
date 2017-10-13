@@ -1,17 +1,6 @@
-
-<?php
-/*session_start();
-Functions::add_guest_statistic();*/
-?>
-
 @extends('layouts.main-layout')
 
-@section('content')
-
-                <div id="current-date"></div>
-
-                <?php /*Functions::HelloUser();*/ ?>
-                
+@section('content')                
                 <section>				
                     <h2>Сербин Александр</h2>
                     <ul>
@@ -59,5 +48,4 @@ Functions::add_guest_statistic();*/
                     <p><strong>Русский</strong> - родной</p>               
                     <p><strong>Английский</strong> - хороший</p>
                 </section>
-
 @endsection

@@ -6,8 +6,7 @@
 			Главная страница. Сайт Сербина Александра
 		</title>
 		<link rel="stylesheet" type="text/css" href="{{ asset('public/css/style.css') }}">
-		<script type="text/javascript" src="{{ asset('public/js/main.js') }}">
-		</script>
+		<script type="text/javascript" src="{{ asset('public/js/main.js') }}"></script>
 
 		@yield('links')
 

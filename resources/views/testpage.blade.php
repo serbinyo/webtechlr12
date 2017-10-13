@@ -1,10 +1,3 @@
-
-<?php
-/*session_start();
-Functions::add_guest_statistic();
-*/
-?>
-
 @extends('layouts.main-layout')
 @section('links')
 				<script>
@@ -26,12 +19,6 @@ Functions::add_guest_statistic();
 				</script>
 @endsection
 @section('content')
-
-
-                <div id="current-date"></div>
-				<?php echo date('H:i:s');?>
-                <?php /*Functions::HelloUser();*/ ?>
-                
                 <section>
 
                     <h1>Тест по дисциплине: &laquo;Основы программирования и алгоритмические языки&raquo;</h1>
@@ -136,12 +123,7 @@ Functions::add_guest_statistic();
                         </div>
                         <input type="submit" value="Отправить" />
                         <!--Защита от CSRF атак-->
-						{{ csrf_field() }}
-						<!--Функция добавляет следующий код на сайт
-						<input type="hidden" name="_token" value="kjsgliauehgKLNGFD"/>
-						в поле value сохраняется случайная строка и она же сохраняется в сессии.
-						Если при отправке строки не равны генерируется исключение
-						-->
+						{{ csrf_field() }}						
                     </form>
                     
                     @foreach ($testresults as $testresult)
@@ -156,8 +138,6 @@ Functions::add_guest_statistic();
 				         <div class='blog_date'>Дата ппрохождения теста: {{$testresult->date}}</div>
 				         </div><br>';
                     
-                    @endforeach
-                    
+                    @endforeach                   
                 </section>
-
 @endsection

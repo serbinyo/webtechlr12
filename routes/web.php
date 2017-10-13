@@ -13,7 +13,7 @@
 
 Route::get('/', 'IndexController@index');
 
-Route::post('/', 'IndexController@auth')->name('indexAuthorize');
+Route::post('/', 'IndexController@auth')->name('userAuthorize');
 
 Route::get('contact', 'ContactController@contact');
 
@@ -42,3 +42,17 @@ Route::post('registration', 'RegistrationController@addUser')->name('registrate'
 Route::get('study', 'StudyController@study');
 
 Route::resource('comment', 'CommentController', ['only'=>['store']] );
+
+Route::get('admin', 'Admin\IndexAdminController@index');
+
+Route::post('admin', 'Admin\IndexAdminController@auth')->name('adminAuthorize');
+
+Route::get('admin_blogeditor', 'Admin\BlogeditorAdminController@blogeditor');
+
+Route::get('admin_blogloadfile', 'Admin\BlogloadfileAdminController@blogloadfile');
+
+Route::get('admin_guestbookloadfile', 'Admin\GuestbookloadfileAdminController@guestbookloadfile');
+
+Route::get('admin_statistics', 'Admin\StatisticsAdminController@statistics');
+
+Route::get('admin_history', 'Admin\HistoryAdminController@history');

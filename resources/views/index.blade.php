@@ -1,42 +1,15 @@
 @extends('layouts.main-layout')
 
-@section('links')
-
-<script>
-	function handlePopupClick()
-	{
-		window.open(this.href, 'registration', 'width=980, height=600, top=50, left=50, status=no, location=no, toolbar=no, menubar=no');
-		return false;
-	}
-
-	window.onload = function ()
-	{
-		var lnks = document.getElementsByTagName('A')
-		for (var i = 0; i < lnks.length; i++)
-		if (/\breg\b/.test(lnks[i].className))
-		lnks[i].onclick = handlePopupClick;
-	}
-</script>
-
-@endsection
-
 @section('content')
-
 
 @if($user)
 
 <div class='login_form_container'>
-	<form action='{{route('indexAuthorize')}}' method='post'>
+	<form action='{{route('userAuthorize')}}' method='post'>
 		<input type='hidden' name='action' value='logout' >
 		Вход выполнен
 		<input type='submit' value='Выйти'>
-		<!--Защита от CSRF атак-->
 		{{ csrf_field() }}
-		<!--Функция добавляет следующий код на сайт
-		<input type="hidden" name="_token" value="kjsgliauehgKLNGFD"/>
-		в поле value сохраняется случайная строка и она же сохраняется в сессии.
-		Если при отправке строки не равны генерируется исключение
-		-->
 	</form>
 </div>
 
@@ -48,7 +21,7 @@
 			Регистрация
 		</button>
 	</a>
-	<form action='{{route('indexAuthorize')}}' method='post'>
+	<form action='{{route('userAuthorize')}}' method='post'>
 		Логин: <input type='text' name='login'>
 		Пароль: <input type='password' name='passwd'>
 		<input type='submit' name='go' value='Вход'>

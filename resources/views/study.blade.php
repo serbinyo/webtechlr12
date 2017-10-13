@@ -1,17 +1,6 @@
-
-<?php
-/*session_start();
-Functions::add_guest_statistic();*/
-?>
-
 @extends('layouts.main-layout')
 
 @section('content')
-
-                <div id="current-date"></div>
-                
-                <?php /*Functions::HelloUser();*/ ?>
-                
                 <section>
 
                     <h2>Севастопольский государственный университет</h2>
@@ -159,5 +148,4 @@ Functions::add_guest_statistic();*/
                     </tr>					
                     </tbody>
                 </table>
-
 @endsection

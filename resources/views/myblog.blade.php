@@ -1,9 +1,3 @@
-
-<?php
-/*session_start();
-Functions::add_guest_statistic();*/
-?>
-
 @extends('layouts.main-layout')
 
 @section('links')

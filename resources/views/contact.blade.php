@@ -1,11 +1,3 @@
-
-<?php
-/*
-session_start();
-Functions::add_guest_statistic();
-*/
-?>
-
 @extends('layouts.main-layout')
 
 @section('links')
@@ -42,11 +34,6 @@ Functions::add_guest_statistic();
 @endsection
 
 @section('content')
-
-                <div id="current-date"></div>
-				
-				<?php /*Functions::HelloUser();*/ ?>
-				
                 <section>	
 
                     <h3>Форма обратной связи</h3>
@@ -217,5 +204,4 @@ Functions::add_guest_statistic();
                         <p>Очистить форму, Вы уверены?</p>
                     </div>
                 </section>
-
 @endsection
