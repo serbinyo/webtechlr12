@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Validator;
+
+use Response;
+
+use App\Comment;
+
 class CommentController extends Controller
 {
     /**
@@ -35,8 +41,23 @@ class CommentController extends Controller
     public function store(Request $request)
     {
     	$data = $request->except('_token');
-    	
-        echo json_encode($data);
+			
+	    $validator = Validator::make($data,
+	    	[
+				'body'=>'required'
+			]);
+			
+		if ($validator->fails()) {
+			return Response::json(['error'=>$validator->errors()->all()]);
+		}
+		
+		$comment = new Comment($data);
+		$comment->date = date("Y-m-d H:i:s");
+		$comment->save();
+		
+		$view_comment = view('content_one_comment')->with('comment', $comment)->render();
+		    	 
+        return Response::json(['success'=>true, 'comment'=>$view_comment]);
         exit();
     }
 
