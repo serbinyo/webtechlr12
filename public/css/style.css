@@ -252,6 +252,18 @@ a.stad_photo:hover img{
     margin-bottom: 10px;
 }
 
+.edit_submit{
+    width: 100%;
+    display: block;
+    border: 0;
+    padding: 10px;
+    background-color: #39be6c;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
 .form-btn-clear {
     width: 100%;
     display: block;
@@ -264,6 +276,11 @@ a.stad_photo:hover img{
 }
 
 .form-btn:hover {
+    background-color: #33aa61;
+    cursor: pointer;
+}
+
+.edit_submit:hover{
     background-color: #33aa61;
     cursor: pointer;
 }
@@ -302,6 +319,16 @@ a.stad_photo:hover img{
 #mybutton:hover { background: rgb(65, 105, 225); }
 
 .blog_addcontainer {
+    margin: 20px 0;
+    padding: 5px 0;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 11px;
+    color: #000000;
+    background: #FFFFFF; /* для IE*/
+}
+
+.blog_editcontainer {
     margin: 20px 0;
     padding: 5px 0;
     text-align: center;

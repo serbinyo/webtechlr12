@@ -55,7 +55,7 @@ class CommentController extends Controller
 		$comment->date = date("Y-m-d H:i:s");
 		$comment->save();
 		
-		$view_comment = view('content_one_comment')->with('comment', $comment)->render();
+		$view_comment = view('one_comment')->with('comment', $comment)->render();
 		    	 
         return Response::json(['success'=>true, 'comment'=>$view_comment]);
         exit();

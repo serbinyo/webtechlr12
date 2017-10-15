@@ -2,9 +2,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Админка. Сайт Сербина Александра</title>
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/style.css') }}" />
-        <script type="text/javascript" src="{{ asset('public/js/main.js') }}"></script>		
+        <script type="text/javascript" src="{{ asset('public/js/main.js') }}"></script>	
+        
+        @yield('links')
+        	
     </head>
     
     @if(!array_key_exists(1,$admins))
@@ -61,7 +65,8 @@
             </div>
 
 			@yield('admincontent')
-
+			<div class="wrap_result"></div>
+			
     		</main>
 		</div>
 		<footer>

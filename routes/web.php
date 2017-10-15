@@ -49,7 +49,7 @@ Route::post('admin', 'Admin\IndexAdminController@auth')->name('adminAuthorize');
 
 Route::get('admin_blogeditor', 'Admin\BlogeditorAdminController@blogeditor');
 
-Route::resource('admin_blogupdatenow', 'Admin\EditorAdminController@edit');
+Route::resource('article', 'Admin\ArticleAdminController', ['only'=>['store']]);
 
 Route::get('admin_blogloadfile', 'Admin\BlogloadfileAdminController@blogloadfile');
 

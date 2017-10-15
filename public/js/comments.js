@@ -7,7 +7,7 @@
 			comments = document.getElementsByClassName('comment'),
 			commentbox = document.getElementsByClassName('comment_body'),
 			hashComentformId = [], 
-			hashSubmitId = [];
+			hashSubmitId = [],
 			hashCommentboxId = [];
 			//var data = [];
 			for (i=0; i< addbtn.length; i++)
