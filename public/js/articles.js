@@ -5,11 +5,12 @@ jQuery(document).ready(function($)
 		editbox = document.getElementsByClassName('blog_editcontainer'),
 		editform = document.getElementsByClassName('editform'),
 		submit = document.getElementsByClassName('edit_submit'),
-		article = document.getElementsByClassName('blog_container'),
-		hasheditBoxId = [],
+		article = document.getElementsByClassName('blog_container');
+		var hasheditBoxId = [],
 		hasheditformId = [],
 		hashArticleId = [],
-		hashSubmitId = [];
+		hashSubmitId = [],
+		hashBtnOpenId = [];
 
 
 
@@ -19,6 +20,8 @@ jQuery(document).ready(function($)
 			hashArticleId[i] = "#"+articleId;
 
 			btnOpenId = addbtn[i].id;
+			hashBtnOpenId[i] = '#'+btnOpenId;
+			
 			editboxId = editbox[i].id;
 			hasheditBoxId[i] = "#"+editboxId;
 
@@ -27,12 +30,14 @@ jQuery(document).ready(function($)
 
 			submitId = submit[i].id;
 			hashSubmitId[i] = "#"+submitId;
-
+			
 			addHideHandler(btnOpenId, editboxId);
+			
+			//addJQueryHandler(hashBtnOpenId[i], hasheditBoxId[i], $);
 		}
 
 
-
+		
 
 
 		//обработчик для формы добавления НОВОЙ публикации
@@ -78,9 +83,10 @@ jQuery(document).ready(function($)
 										delay(900).
 										fadeOut(500,function()
 											{
-												document.location.reload(true);
-												//$('#articles').prepend(html.article);
-												//$(hashArticleId[4]).remove();
+												//document.location.reload(true);
+												$('#articles').prepend(html.article);
+												$(hashArticleId[4]).remove();
+												$.getScript('../../public/js/articles.js');
 
 											});
 									}
@@ -411,4 +417,14 @@ function addHideHandler(sourceId, targetId)
 		targetNode.style.display = 'none'
 	}
 	sourceNode.onclick = handler
+}
+
+function addJQueryHandler(hashBtnOpenId, hasheditBoxId, $){
+	$(hashBtnOpenId).click(function(){
+			var elementStyle = $(hasheditBoxId).css('display');
+				if (elementStyle === 'none')
+				$(hasheditBoxId).css('display','block');
+				else
+				$(hasheditBoxId).css('display','none');
+	});
 }
