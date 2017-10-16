@@ -1,21 +1,21 @@
 <div class="blog_container">
-<div class='blog_title' id='ttl{{$article->id}}'><h3>{{$article->title}}</h3></div>
-<div class='blog_image' id='img{{$article->id}}'><img src='{{$article->image}}'  width='250' alt='{{$article->image}}'/></div>
-<div class='blog_body' id='bdy{{$article->id}}'>{{$article->body}}</div>
-<div class='blog_date'>{{$article->date}}</div>
-<div class='blog_link_container'>
-<div class="blog_update_link" id="edit{{$article->id}}" style="cursor:pointer">Редактировать</div>
-<a class="blog_delete_link" href = "blogeditor?action=delete&id={{$article->id}}">Удалить</a>
-<div style="clear: left"></div>
-</div>
+	<h3><div class='blog_title' id='ttl{{$article->id}}'>{{$article->title}}</div></h3>
+	<div class='blog_image' id='img{{$article->id}}'><img src='{{$article->image}}'  width='250' alt='{{$article->image}}'/></div>
+	<div class='blog_body' id='bdy{{$article->id}}'>{{$article->body}}</div>
+	<div class='blog_date'>{{$article->date}}</div>
+	<div class='blog_link_container'>
+		<div class="blog_update_link" id="edit{{$article->id}}" style="cursor:pointer">Редактировать</div>
+		<a class="blog_delete_link" href = "">Удалить</a>
+		<div style="clear: left"></div>
+	</div>
 </div><br>
 
-                    <div id='editablebox{{$article->id}}' class='blog_editcontainer' style='display:none'>
-                    <h3>Форма редактирования публикации</h3>
+<div id='editablebox{{$article->id}}' class='blog_editcontainer' style='display:none'>
+<h3>Форма редактирования публикации</h3>
                     
-                    <form id="editform{{$article->id}}" action="{{ route('article.store')}}" method='post'  class='editform'>
-                    <input type="hidden" name="article_id" value="{{$article->id}}" />
-                    <div class='message js-form-message'></div>
+<form id="editform{{$article->id}}" action="{{ route('article.store')}}" method='post'  class='editform'>
+<input type="hidden" name="article_id" value="{{$article->id}}" />
+<div class='message js-form-message'></div>
 
                     <div class='form-group'>
                         <label class='control-label'>Заголовок:*</label>
