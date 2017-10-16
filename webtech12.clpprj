@@ -5764,6 +5764,7 @@
 		<file name="C:\OpenServer\domains\wtlr12\storage\framework\views\87582652948bf119a83ab814ababccfd6afb803f.php" crc="1507856234"/>
 		<file name="C:\OpenServer\domains\wtlr12\storage\framework\views\84c6eb98e13aa0709c0c9c19815713ea2045bb97.php" crc="1507475097"/>
 		<file name="C:\OpenServer\domains\wtlr12\storage\framework\views\81612cf5369c35fd7141fdaf1b13d24c029091bc.php" crc="1507856237"/>
+		<file name="C:\OpenServer\domains\wtlr12\storage\framework\views\7b673ec7de58aa9da82377632f50315d31fb0ab6.php" crc="1508111080"/>
 		<file name="C:\OpenServer\domains\wtlr12\storage\framework\views\6d69120bd68facd8b57d125ed4f8f3b99d37e353.php" crc="1507837129"/>
 		<file name="C:\OpenServer\domains\wtlr12\storage\framework\views\6c5992da3393fbd92d231497181f58f6388dc887.php" crc="1507836123"/>
 		<file name="C:\OpenServer\domains\wtlr12\storage\framework\views\6a834d6b360080d3b56a36027f8d0cac05c617cd.php" crc="1507837134"/>
@@ -5774,6 +5775,7 @@
 		<file name="C:\OpenServer\domains\wtlr12\storage\framework\views\3061739540cc50e40e5e1c0202e68e5d8ad6f904.php" crc="1507982921"/>
 		<file name="C:\OpenServer\domains\wtlr12\storage\framework\views\1c39b8bd4eda6fa95e5d22329b373776cf950d09.php" crc="1507940126"/>
 		<file name="C:\OpenServer\domains\wtlr12\storage\framework\views\190c1a5c14fde0334fc52392d139ce323b7389fa.php" crc="1507324016"/>
+		<file name="C:\OpenServer\domains\wtlr12\storage\framework\views\060af076c8259e5cffc449821f6b996a78ec7f4c.php" crc="1508022082"/>
 		<file name="C:\OpenServer\domains\wtlr12\routes\web.php" crc="1507979943"/>
 		<file name="C:\OpenServer\domains\wtlr12\routes\console.php" crc="1506989874"/>
 		<file name="C:\OpenServer\domains\wtlr12\routes\channels.php" crc="1506989874"/>
@@ -5797,7 +5799,7 @@
 		<file name="C:\OpenServer\domains\wtlr12\resources\views\registration.blade.php" crc="1507830033"/>
 		<file name="C:\OpenServer\domains\wtlr12\resources\views\photo.blade.php" crc="1507830011"/>
 		<file name="C:\OpenServer\domains\wtlr12\resources\views\one_comment.blade.php" crc="1507940074"/>
-		<file name="C:\OpenServer\domains\wtlr12\resources\views\one_article.blade.php" crc="1508030913"/>
+		<file name="C:\OpenServer\domains\wtlr12\resources\views\one_article.blade.php" crc="1508111052"/>
 		<file name="C:\OpenServer\domains\wtlr12\resources\views\myblog.blade.php" crc="1507940702"/>
 		<file name="C:\OpenServer\domains\wtlr12\resources\views\interests.blade.php" crc="1507830588"/>
 		<file name="C:\OpenServer\domains\wtlr12\resources\views\index.blade.php" crc="1507853395"/>
@@ -6699,7 +6701,7 @@
 		<file name="C:\OpenServer\domains\wtlr12\public\js\jquery-1.4.3.min.js" crc="1287680100"/>
 		<file name="C:\OpenServer\domains\wtlr12\public\js\custom.js" crc="1492213854"/>
 		<file name="C:\OpenServer\domains\wtlr12\public\js\comments.js" crc="1508034251"/>
-		<file name="C:\OpenServer\domains\wtlr12\public\js\articles.js" crc="1508036056"/>
+		<file name="C:\OpenServer\domains\wtlr12\public\js\articles.js" crc="1508114419"/>
 		<file name="C:\OpenServer\domains\wtlr12\public\js\app.js" crc="1506989874"/>
 		<file name="C:\OpenServer\domains\wtlr12\public\files\messages.inc" crc="1507942624"/>
 		<file name="C:\OpenServer\domains\wtlr12\public\css\style.css" crc="1507981990"/>
@@ -6746,7 +6748,7 @@
 		<file name="C:\OpenServer\domains\wtlr12\app\Http\Controllers\Admin\HistoryAdminController.php" crc="1507852135"/>
 		<file name="C:\OpenServer\domains\wtlr12\app\Http\Controllers\Admin\GuestbookloadfileAdminController.php" crc="1507852157"/>
 		<file name="C:\OpenServer\domains\wtlr12\app\Http\Controllers\Admin\BlogloadfileAdminController.php" crc="1507859926"/>
-		<file name="C:\OpenServer\domains\wtlr12\app\Http\Controllers\Admin\BlogeditorAdminController.php" crc="1508022943"/>
+		<file name="C:\OpenServer\domains\wtlr12\app\Http\Controllers\Admin\BlogeditorAdminController.php" crc="1508114500"/>
 		<file name="C:\OpenServer\domains\wtlr12\app\Http\Controllers\Admin\ArticleAdminController.php" crc="1508030789"/>
 		<file name="C:\OpenServer\domains\wtlr12\app\Http\Controllers\Admin\AdminController.php" crc="1507854730"/>
 		<file name="C:\OpenServer\domains\wtlr12\app\Http\Controllers\TestpageController.php" crc="1507942522"/>

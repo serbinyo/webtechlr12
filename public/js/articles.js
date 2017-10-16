@@ -1,8 +1,6 @@
 jQuery(document).ready(function($)
 	{
-
-		var ArticleId = indexator($);		
-
+		var ArticleId = indexator($);
 
 		//обработчик для формы добавления НОВОЙ публикации
 		$('#addform').on('click','#addform-submit',function(e)
@@ -50,7 +48,7 @@ jQuery(document).ready(function($)
 												$('#articles').prepend(html.article);
 												$('input').off();
 												$('.blog_update_link').off();
-												$(ArticleId[4]).remove();
+												$(ArticleId[ArticleId.length-1]).remove();
 												ArticleId = indexator($);
 
 
@@ -85,20 +83,20 @@ function addHideHandler(sourceId, targetId)
 	sourceNode.onclick = handler
 }
 
-function addJQueryHandler(hashBtnOpenId, hasheditBoxId, $)
+function addJQueryHandler(JQBtnOpenId, JQeditBoxId, $)
 {
-	$(hashBtnOpenId).click(function()
+	$(JQBtnOpenId).click(function()
 		{
-			var elementStyle = $(hasheditBoxId).css('display');
+			var elementStyle = $(JQeditBoxId).css('display');
 			if (elementStyle === 'none')
-			$(hasheditBoxId).css('display','block');
+			$(JQeditBoxId).css('display','block');
 			else
-			$(hasheditBoxId).css('display','none');
+			$(JQeditBoxId).css('display','none');
 		});
 }
 
-function sendAjax(hashSubmitId, hasheditformId, hasheditBoxId, $){
-		$(hashSubmitId).click(function(e)
+function sendAjax(JQSubmitId, JQeditformId, JQeditBoxId, $){
+		$(JQSubmitId).click(function(e)
 				{
 			e.preventDefault();
 			//информация о происходящем в ассинхронном запросе для пользователя
@@ -109,11 +107,11 @@ function sendAjax(hashSubmitId, hasheditformId, hasheditBoxId, $){
 				{
 					//плавно показываем блок(500мс), затем выполняем функцию
 
-					data = $(hasheditformId).serializeArray();
+					data = $(JQeditformId).serializeArray();
 
 					$.ajax(
 						{
-							url: $(hasheditformId).attr('action'),
+							url: $(JQeditformId).attr('action'),
 							data: data,
 							type: 'POST',
 							headers:
@@ -139,7 +137,7 @@ function sendAjax(hashSubmitId, hasheditformId, hasheditBoxId, $){
 									delay(900).
 									fadeOut(500,function()
 										{
-											$(hasheditBoxId).css('display','none');
+											$(JQeditBoxId).css('display','none');
 											$('#ttl'+html['article']['article_id']).text(html['article']['title']);
 											$('#img'+html['article']['article_id']).attr({'src':html['article']['image'],'alt':html['article']['image']});
 											$('#bdy'+html['article']['article_id']).text(html['article']['body']);
@@ -165,343 +163,35 @@ function indexator($)
 	editbox = document.getElementsByClassName('blog_editcontainer'),
 	editform = document.getElementsByClassName('editform'),
 	submit = document.getElementsByClassName('edit_submit'),
-	article = document.getElementsByClassName('blog_container');
-	var hasheditBoxId = [],
-	hasheditformId = [],
-	hashArticleId = [],
-	hashSubmitId = [],
-	hashBtnOpenId = [];
+	article = document.getElementsByClassName('blog_container'),
+	JQeditBoxId = [],
+	JQeditformId = [],
+	JQArticleId = [],
+	JQSubmitId = [],
+	JQBtnOpenId = [];
 
 	for (i=0; i< addbtn.length; i++)
 	{
 		articleId = article[i].id;
-		hashArticleId[i] = "#"+articleId;
+		JQArticleId[i] = "#"+articleId;
 
 		btnOpenId = addbtn[i].id;
-		hashBtnOpenId[i] = '#'+btnOpenId;
+		JQBtnOpenId[i] = '#'+btnOpenId;
 
 		editboxId = editbox[i].id;
-		hasheditBoxId[i] = "#"+editboxId;
+		JQeditBoxId[i] = "#"+editboxId;
 
 		editformId = editform[i].id;
-		hasheditformId[i] = "#"+editformId;
+		JQeditformId[i] = "#"+editformId;
 
 		submitId = submit[i].id;
-		hashSubmitId[i] = "#"+submitId;
+		JQSubmitId[i] = "#"+submitId;
 
 		//addHideHandler(btnOpenId, editboxId);
-		addJQueryHandler(hashBtnOpenId[i], hasheditBoxId[i], $);
-		sendAjax(hashSubmitId[i], hasheditformId[i], hasheditBoxId[i], $);
-
-
+		addJQueryHandler(JQBtnOpenId[i], JQeditBoxId[i], $);
+		sendAjax(JQSubmitId[i], JQeditformId[i], JQeditBoxId[i], $);
 	}
 	
-	
-/*	//$(hasheditformId[0]).on('click',hashSubmitId[0],function(e)
-	$(hashSubmitId[0]).click(function(e)
-				{
-			e.preventDefault();
-			//информация о происходящем в ассинхронном запросе для пользователя
-			$('.wrap_result').
-			css('color','green').
-			text('Редактирование публикации').
-			fadeIn(500, function()
-				{
-					//плавно показываем блок(500мс), затем выполняем функцию
-
-					data = $(hasheditformId[0]).serializeArray();
-
-					$.ajax(
-						{
-							url: $(hasheditformId[0]).attr('action'),
-							data: data,
-							type: 'POST',
-							headers:
-							{
-								'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-							},
-							datatype: 'JSON',
-							success: function(html)
-							{
-								if(html.error)
-								{
-									$('.wrap_result').
-									css('color','red').
-									append('<br/><strong>Заполните все поля</strong>').
-									delay(900).
-									fadeOut(500);
-								}
-								else if(html.success)
-								{
-									$('.wrap_result').
-									css('color','blue').
-									append('<br/><strong>Публикация отредактирована</strong>').
-									delay(900).
-									fadeOut(500,function()
-										{
-											$(hasheditBoxId[0]).css('display','none');
-											$('#ttl'+html['article']['article_id']).text(html['article']['title']);
-											$('#img'+html['article']['article_id']).attr({'src':html['article']['image'],'alt':html['article']['image']});
-											$('#bdy'+html['article']['article_id']).text(html['article']['body']);
-										});
-								}
-							},
-							error: function()
-							{
-								$('.wrap_result').
-								css('color','red').
-								append('<br/><strong>Ошибка</strong>').
-								delay(900).
-								fadeOut(500);
-							}
-						});
-				});
-		});
-
-	//$(hasheditformId[1]).on('click',hashSubmitId[1],function(e)
-	$(hashSubmitId[1]).click(function(e)
-		{
-			e.preventDefault();
-			//информация о происходящем в ассинхронном запросе для пользователя
-			$('.wrap_result').
-			css('color','green').
-			text('Редактирование публикации').
-			fadeIn(500, function()
-				{
-					//плавно показываем блок(500мс), затем выполняем функцию
-
-					data = $(hasheditformId[1]).serializeArray();
-
-					$.ajax(
-						{
-							url: $(hasheditformId[1]).attr('action'),
-							data: data,
-							type: 'POST',
-							headers:
-							{
-								'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-							},
-							datatype: 'JSON',
-							success: function(html)
-							{
-								if(html.error)
-								{
-									$('.wrap_result').
-									css('color','red').
-									append('<br/><strong>Заполните все поля</strong>').
-									delay(900).
-									fadeOut(500);
-								}
-								else if(html.success)
-								{
-									$('.wrap_result').
-									css('color','blue').
-									append('<br/><strong>Публикация отредактирована</strong>').
-									delay(900).
-									fadeOut(500,function()
-										{
-											$(hasheditBoxId[1]).css('display','none');
-											$('#ttl'+html['article']['article_id']).text(html['article']['title']);
-											$('#img'+html['article']['article_id']).attr({'src':html['article']['image'],'alt':html['article']['image']});
-											$('#bdy'+html['article']['article_id']).text(html['article']['body']);
-										});
-								}
-							},
-							error: function()
-							{
-								$('.wrap_result').
-								css('color','red').
-								append('<br/><strong>Ошибка</strong>').
-								delay(900).
-								fadeOut(500);
-							}
-						});
-				});
-		});
-
-	//$(hasheditformId[2]).on('click',hashSubmitId[2],function(e)
-	$(hashSubmitId[2]).click(function(e)
-		{
-			e.preventDefault();
-			//информация о происходящем в ассинхронном запросе для пользователя
-			$('.wrap_result').
-			css('color','green').
-			text('Редактирование публикации').
-			fadeIn(500, function()
-				{
-					//плавно показываем блок(500мс), затем выполняем функцию
-
-					data = $(hasheditformId[2]).serializeArray();
-
-					$.ajax(
-						{
-							url: $(hasheditformId[2]).attr('action'),
-							data: data,
-							type: 'POST',
-							headers:
-							{
-								'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-							},
-							datatype: 'JSON',
-							success: function(html)
-							{
-								if(html.error)
-								{
-									$('.wrap_result').
-									css('color','red').
-									append('<br/><strong>Заполните все поля</strong>').
-									delay(900).
-									fadeOut(500);
-								}
-								else if(html.success)
-								{
-									$('.wrap_result').
-									css('color','blue').
-									append('<br/><strong>Публикация отредактирована</strong>').
-									delay(900).
-									fadeOut(500,function()
-										{
-											$(hasheditBoxId[2]).css('display','none');
-											$('#ttl'+html['article']['article_id']).text(html['article']['title']);
-											$('#img'+html['article']['article_id']).attr({'src':html['article']['image'],'alt':html['article']['image']});
-											$('#bdy'+html['article']['article_id']).text(html['article']['body']);
-										});
-								}
-							},
-							error: function()
-							{
-								$('.wrap_result').
-								css('color','red').
-								append('<br/><strong>Ошибка</strong>').
-								delay(900).
-								fadeOut(500);
-							}
-						});
-				});
-		});
-
-	//$(hasheditformId[3]).on('click',hashSubmitId[3],function(e)
-	$(hashSubmitId[3]).click(function(e)
-		{
-			e.preventDefault();
-			//информация о происходящем в ассинхронном запросе для пользователя
-			$('.wrap_result').
-			css('color','green').
-			text('Редактирование публикации').
-			fadeIn(500, function()
-				{
-					//плавно показываем блок(500мс), затем выполняем функцию
-
-					data = $(hasheditformId[3]).serializeArray();
-
-					$.ajax(
-						{
-							url: $(hasheditformId[3]).attr('action'),
-							data: data,
-							type: 'POST',
-							headers:
-							{
-								'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-							},
-							datatype: 'JSON',
-							success: function(html)
-							{
-								if(html.error)
-								{
-									$('.wrap_result').
-									css('color','red').
-									append('<br/><strong>Заполните все поля</strong>').
-									delay(900).
-									fadeOut(500);
-								}
-								else if(html.success)
-								{
-									$('.wrap_result').
-									css('color','blue').
-									append('<br/><strong>Публикация отредактирована</strong>').
-									delay(900).
-									fadeOut(500,function()
-										{
-											$(hasheditBoxId[3]).css('display','none');
-											$('#ttl'+html['article']['article_id']).text(html['article']['title']);
-											$('#img'+html['article']['article_id']).attr({'src':html['article']['image'],'alt':html['article']['image']});
-											$('#bdy'+html['article']['article_id']).text(html['article']['body']);
-										});
-								}
-							},
-							error: function()
-							{
-								$('.wrap_result').
-								css('color','red').
-								append('<br/><strong>Ошибка</strong>').
-								delay(900).
-								fadeOut(500);
-							}
-						});
-				});
-		});
-
-	//$(hasheditformId[4]).on('click',hashSubmitId[4],function(e)
-	$(hashSubmitId[4]).click(function(e)
-		{
-			e.preventDefault();
-			//информация о происходящем в ассинхронном запросе для пользователя
-			$('.wrap_result').
-			css('color','green').
-			text('Редактирование публикации').
-			fadeIn(500, function()
-				{
-					//плавно показываем блок(500мс), затем выполняем функцию
-
-					data = $(hasheditformId[4]).serializeArray();
-
-					$.ajax(
-						{
-							url: $(hasheditformId[4]).attr('action'),
-							data: data,
-							type: 'POST',
-							headers:
-							{
-								'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-							},
-							datatype: 'JSON',
-							success: function(html)
-							{
-								if(html.error)
-								{
-									$('.wrap_result').
-									css('color','red').
-									append('<br/><strong>Заполните все поля</strong>').
-									delay(900).
-									fadeOut(500);
-								}
-								else if(html.success)
-								{
-									$('.wrap_result').
-									css('color','blue').
-									append('<br/><strong>Публикация отредактирована</strong>').
-									delay(900).
-									fadeOut(500,function()
-										{
-											$(hasheditBoxId[4]).css('display','none');
-											$('#ttl'+html['article']['article_id']).text(html['article']['title']);
-											$('#img'+html['article']['article_id']).attr({'src':html['article']['image'],'alt':html['article']['image']});
-											$('#bdy'+html['article']['article_id']).text(html['article']['body']);
-										});
-								}
-							},
-							error: function()
-							{
-								$('.wrap_result').
-								css('color','red').
-								append('<br/><strong>Ошибка</strong>').
-								delay(900).
-								fadeOut(500);
-							}
-						});
-				});
-		});*/
-
-	return hashArticleId;
+	return JQArticleId;
 }
 
