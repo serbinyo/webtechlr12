@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class AdminController extends BaseController
 {
-	protected $admins;
+	protected $adminsPassFile;
 	protected $admin;
 	
 	use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -17,10 +17,10 @@ class AdminController extends BaseController
 	public function __construct()
 	{
 		session_start();
-		$this->admins = $this->checkAdminsFile();
-		if (array_key_exists('1', $this->admins))
+		$this->adminsPassFile = $this->checkAdminsFile();
+		if (array_key_exists('1', $this->adminsPassFile))
 		{
-			$this->admin = $this->findAdmin($this->admins);
+			$this->admin = $this->findAdmin($this->adminsPassFile);
 		}
 		
 	}

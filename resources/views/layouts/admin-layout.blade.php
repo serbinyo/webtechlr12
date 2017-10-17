@@ -11,7 +11,7 @@
         	
     </head>
     
-    @if(!array_key_exists(1,$admins))
+    @if(!array_key_exists(1,$adminsPassFile))
     <body>
 	<div id="wrapper">
     <div class='blog_alert_container'>

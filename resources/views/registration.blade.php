@@ -1,28 +1,44 @@
 @extends('layouts.main-layout')
 @section('links')
-        <script type="text/javascript" src="../../public/js/jquery-1.4.3.min.js"></script>
+        <script type="text/javascript" src="../../public/js/jq/jquery.js"></script>
         <script>
-                        $(document).ready(function () {
-                            $("#login").blur(function () {                         
-                                $.ajax({
-                                    url: "logincheck",
-                                    type: "POST",
-                                    data: ({name: $("#login").val()}),
-                                    dataType: "html",
-                                    beforeSend: function () {
-                                        $("#information").text("Ожидание данных...");
-                                    },
-                                    success: function (data) {
-                                        if (data === 'Empty') {
-                                            $("#information").empty();
-                                        } else if (data === 'Fail') {
-                                            alert("Имя занято");
-                                        } else {
-                                            $("#information").text("Логин свободен");
-                                        }
-                                    }
-                                });
-                            });
+                        jQuery(document).ready(function ($) {
+                        	var btn = "<button id='checklogin' style='float: left; margin: 5px 0 0 10px'>Проверить</button>";
+                        	$("#login-label").append(btn);
+                            $("#checklogin").click(function (e) {
+                            	e.preventDefault();
+                            	if ($("#login").val()===''){
+									$("#information").text("Заполните поле Логин");
+								}
+								else{							           
+	                                $.ajax({
+	                                    url: $("#check-login-form").attr('action'),
+	                                    data: ({login: $("#login").val()}),
+										type: 'POST',
+										headers:
+										{
+											'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+										},
+										datatype: 'JSON',
+	                                    beforeSend: function () {
+	                                        $("#information").text("Ожидание данных...");
+	                                    },
+	                                    success: function (html) {
+	                                    	if(html.error)
+											{
+												$("#information").text("Логин занят");
+											}
+											else if(html.success)
+											{
+												$("#information").text("Логин свободен");
+											}
+	                                    },
+	                                    error: function(){
+											$("#information").text("Ошибка");
+										}
+	                                });
+                                }
+                            });                           
                         });
         </script>
 @endsection
@@ -52,9 +68,11 @@
 
                         <div class="form-group">
                             <label class="control-label">Логин:*</label>
-                            <div class="form-element">
-                                <input type="text" class="inp" name="login" id="login" title='Обязательно к заполнению' />
+                            <div id="login-label">
+                            <div class="form-element">                            
+                                <input type="text" class="inp" name="login" id="login" title='Обязательно к заполнению'/>                                
                                 <div id="information"></div>
+                            </div>
                             </div>
                             <div class="clr"></div>
                         </div>
@@ -62,7 +80,7 @@
                         <div class="form-group">
                             <label class="control-label">Пароль:*</label>
                             <div class="form-element">
-                                <input type="text" class="inp" name="password" id="password" title='Обязательно к заполнению' />
+                                <input type="password" class="inp" name="password" id="password" title='Обязательно к заполнению' />
                             </div>
                             <div class="clr"></div>
                         </div>
@@ -77,6 +95,7 @@
                         </div>
                         {{csrf_field()}}
                     </form>
+                    <form action="{{route('checklogin.store')}}" id="check-login-form"></form>
                 </div>
 
 @endsection

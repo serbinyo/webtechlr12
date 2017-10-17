@@ -9,9 +9,9 @@ class GuestbookController extends Controller
 	public function guestbookShow()
 	{
 		$out = array();
-		if(is_file('../public/files/messages.inc'))
+		if(is_file('../public/messages.inc'))
 		{
-			foreach(file('files/messages.inc') as $v)
+			foreach(file('messages.inc') as $v)
 			{
 				$out[] = explode(';', $v);
 			}
@@ -22,12 +22,12 @@ class GuestbookController extends Controller
 			}
 			else
 			{
-				echo '<h3 style="text-align: center;">Пока нет ни отдной записи в гостевой книге</h3>';
+				$tbl = '<h3 style="text-align: center;">Пока нет ни отдной записи в гостевой книге</h3>';
 			}
 		}
 		else
 		{
-			echo '<h3 style="text-align: center;">Нет файла с записями</h3>';
+			$tbl = '<h3 style="text-align: center;">Нет файла с записями</h3>';
 		}
 
 		return view('guestbook')->with(['user'=> $this->user, 'table'=>$tbl]);
@@ -91,8 +91,8 @@ class GuestbookController extends Controller
 
 	function messageToFile($message)
 	{
-		if(is_writable('../public/files/messages.inc')){
-			$a = fopen('../public/files/messages.inc', 'a');
+		if(is_writable('../public/messages.inc')){
+			$a = fopen('../public/messages.inc', 'a');
 			fwrite($a, $message);
 			fclose($a);
 		}

@@ -8,7 +8,7 @@ class IndexAdminController extends AdminController
 {
 	public function index()
 	{
-		return view('admin.index')->with(['admin'=>$this->admin, 'admins'=>$this->admins]);
+		return view('admin.index')->with(['admin'=>$this->admin, 'adminsPassFile'=>$this->adminsPassFile]);
 	}
 	
 	public function auth(Request $request)

@@ -5,17 +5,23 @@
 	<div class='blog_date'>{{$article->date}}</div>
 	<div class='blog_link_container'>
 		<div class="blog_update_link" id="edit{{$article->id}}" style="cursor:pointer">Редактировать</div>
-		<a class="blog_delete_link" href = "">Удалить</a>
+		
+		<form action="{{ route('article.destroy', ['id'=>$article->id]) }}" method='post'>
+        <button type="submit" class="blog_delete_link">Удалить</button>
+        {{csrf_field()}}
+        {{method_field('DELETE')}}
+        </form>
+        
 		<div style="clear: left"></div>
 	</div>
 </div><br>
 
 <div id='editablebox{{$article->id}}' class='blog_editcontainer' style='display:none'>
-<h3>Форма редактирования публикации</h3>
-                    
-<form id="editform{{$article->id}}" action="{{ route('article.store')}}" method='post'  class='editform'>
-<input type="hidden" name="article_id" value="{{$article->id}}" />
-<div class='message js-form-message'></div>
+	<h3>Форма редактирования публикации</h3>
+	                    
+	<form id="editform{{$article->id}}" action="{{ route('article.store')}}" method='post'  class='editform'>
+	<input type="hidden" name="article_id" value="{{$article->id}}" />
+	<div class='message js-form-message'></div>
 
                     <div class='form-group'>
                         <label class='control-label'>Заголовок:*</label>
@@ -52,4 +58,4 @@
                     </div>
                     </form>
                     
-                	</div>
+</div>

@@ -301,6 +301,17 @@ a.stad_photo:hover img{
     display: none;
 }
 
+.message-blog {
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #c8c4c7;
+    color: #cc5555;
+    text-align: center;
+}
+.message-blog:empty {
+    display: none;
+}
+
 .blurred {
     -webkit-filter: blur(7px);
     -webkit-transition: all 2s;

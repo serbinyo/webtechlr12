@@ -29,6 +29,8 @@ class IndexController extends Controller
 	
 	public function login($request)
 	{
+		$request['passwd'] = md5($request['passwd']);
+
 		$this->validate($request,
 			[
 				'login'=>[
@@ -42,9 +44,9 @@ class IndexController extends Controller
 			],
 			[
 				'login.required'=>'Необходимо указать логин',
-				'login.exists'=>'Неверный ввод, попробуйте еще раз',
+				'login.exists'=>'Неверный логин, попробуйте еще раз',
 				'passwd.required'=>'Необходимо указать пароль',
-				'passwd.exists'=>'Неверный ввод, попробуйте еще раз'
+				'passwd.exists'=>'Неверный пароль, попробуйте еще раз'
 			]);
 
 		$data        = $request->all();

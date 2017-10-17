@@ -63,9 +63,7 @@ class ArticleAdminController extends AdminController
 		} else{
 			$data = $this->saveArticle($data);
 			$view_article = view('one_article')->with('article', $data)->render();
-			return Response::json(['success'=>true, 'article'=>$view_article]);
-			
-			
+			return Response::json(['success'=>true, 'article'=>$view_article]);		
 		}
 	exit();
         
@@ -133,6 +131,8 @@ class ArticleAdminController extends AdminController
      */
     public function destroy($id)
     {
-        //
+        $article = Blogarticle::find($id);
+        $article->delete();
+    	return redirect('admin_blogeditor');
     }
 }

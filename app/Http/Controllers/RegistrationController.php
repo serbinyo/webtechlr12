@@ -36,6 +36,7 @@ class RegistrationController extends Controller
 		$email    = htmlspecialchars(trim($data['email']));
 		$login    = htmlspecialchars(trim($data['login']));
 		$password = htmlspecialchars(trim($data['password']));
+		$password = md5($password);
 
 		$newUser  = [
 			'fio' => $fio,

@@ -8,6 +8,6 @@ class HistoryAdminController extends AdminController
 {
     public function history()
 	{
-		return view('admin.history')->with(['admin'=>$this->admin, 'admins'=>$this->admins]);
+		return view('admin.history')->with(['admin'=>$this->admin, 'adminsPassFile'=>$this->adminsPassFile]);
 	}
 }

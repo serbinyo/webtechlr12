@@ -39,6 +39,8 @@ Route::get('registration', 'RegistrationController@registration');
 
 Route::post('registration', 'RegistrationController@addUser')->name('registrate');
 
+Route::resource('checklogin', 'CheckloginController', ['only'=>['store']]);
+
 Route::get('study', 'StudyController@study');
 
 Route::resource('comment', 'CommentController', ['only'=>['store']] );
@@ -49,11 +51,15 @@ Route::post('admin', 'Admin\IndexAdminController@auth')->name('adminAuthorize');
 
 Route::get('admin_blogeditor', 'Admin\BlogeditorAdminController@blogeditor');
 
-Route::resource('article', 'Admin\ArticleAdminController', ['only'=>['store']]);
+Route::resource('article', 'Admin\ArticleAdminController', ['only'=>['store','destroy']]);
 
 Route::get('admin_blogloadfile', 'Admin\BlogloadfileAdminController@blogloadfile');
 
+Route::post('admin_blogloadfile', 'Admin\BlogloadfileAdminController@load')->name('blogLoad');
+
 Route::get('admin_guestbookloadfile', 'Admin\GuestbookloadfileAdminController@guestbookloadfile');
+
+Route::post('admin_guestbookloadfile', 'Admin\GuestbookloadfileAdminController@load')->name('guestbookLoad');
 
 Route::get('admin_statistics', 'Admin\StatisticsAdminController@statistics');
 

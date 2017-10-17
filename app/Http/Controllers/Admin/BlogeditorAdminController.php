@@ -12,6 +12,6 @@ class BlogeditorAdminController extends AdminController
 	{
 		$articles = DB::table('Blogarticles')->orderBy('date', 'desc')->paginate(5);
 		
-		return view('admin.blogeditor')->with(['admin'=>$this->admin, 'admins'=>$this->admins, 'articles'=>$articles]);
+		return view('admin.blogeditor')->with(['admin'=>$this->admin, 'adminsPassFile'=>$this->adminsPassFile, 'articles'=>$articles]);
 	}
 }
