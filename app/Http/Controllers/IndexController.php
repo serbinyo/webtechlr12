@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class IndexController extends Controller
 {
@@ -11,53 +12,15 @@ class IndexController extends Controller
 		return view('index')->with(['user'=> $this->user]);
 	}
 	
-	public function auth(Request $request)
+	public function auth(Request $request, User $userModel)
 	{
-			
 		$data = $request->all();
-		
 		if(array_key_exists('go', $data)){
-			$this->login($request);
+			$userModel->login($request);
 		}
 		else{
-			$this->logout();
-		}	
-		
-		return redirect('/');	
-		
-	}
-	
-	public function login($request)
-	{
-		$request['passwd'] = md5($request['passwd']);
-
-		$this->validate($request,
-			[
-				'login'=>[
-					'required',
-					'exists:users,login'
-					],
-				'passwd'=>[
-					'required',
-					'exists:users,password'
-					]
-			],
-			[
-				'login.required'=>'Необходимо указать логин',
-				'login.exists'=>'Неверный логин, попробуйте еще раз',
-				'passwd.required'=>'Необходимо указать пароль',
-				'passwd.exists'=>'Неверный пароль, попробуйте еще раз'
-			]);
-
-		$data        = $request->all();
-		
-		$_SESSION['login'] = htmlspecialchars(trim($data['login']));
-		$_SESSION['passwd'] = htmlspecialchars(trim($data['passwd']));
-	
-	}
-		
-	public function logout()
-	{
-		session_destroy();	
+            $userModel->logout();
+		}
+		return redirect('/');
 	}
 }

@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use Response;
-
-use Illuminate\Support\Facades\DB;
+use App\User;
 
 class CheckloginController extends Controller
 {
@@ -36,17 +33,10 @@ class CheckloginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, User $userModel)
     {
-        $data = $request->all();
-        $name = htmlspecialchars(trim($data['login']));
-        $login = DB::table('users')->where('login', $name)->first();
-        if(empty($login)){
-        return Response::json(['success'=>true]);	
-		}
-		else {
-		return Response::json(['error'=>true]);	
-		}
+        $response_json = $userModel->loginCheck($request);
+		return $response_json;
         exit();
     }
 

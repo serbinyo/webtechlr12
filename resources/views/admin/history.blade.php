@@ -81,6 +81,39 @@
 			showHistory('tbody-session', sessionPages);
 			showHistory('tbody-all', allPages);
 		});
+    getCookie = function(name) {
+        var matches;
+        matches = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'));
+        if (matches) {
+            return decodeURIComponent(matches[1]);
+        } else {
+            return void 0;
+        }
+    };
+
+    setCookie = function(name, value, options) {
+        var d, expires, propName, propValue, updatedCookie;
+        options = options || {};
+        expires = options.expires;
+        if (typeof expires === 'number' && expires) {
+            d = new Date;
+            d.setTime(d.getTime() + expires * 1000);
+            expires = options.expires = d;
+        }
+        if (expires && expires.toUTCString) {
+            options.expires = expires.toUTCString();
+        }
+        value = encodeURIComponent(value);
+        updatedCookie = name + '=' + value;
+        for (propName in options) {
+            updatedCookie += '; ' + propName;
+            propValue = options[propName];
+            if (propValue !== true) {
+                updatedCookie += '=' + propValue;
+            }
+        }
+        document.cookie = updatedCookie;
+    };
 </script>
 @endsection
 
