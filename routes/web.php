@@ -25,7 +25,7 @@ Route::get('testpage', 'TestpageController@testpage');
 
 Route::post('testpage', 'TestpageController@storeOrShow')->name('resultStoreOrShow');
 
-Route::get('guestbook', 'GuestbookController@guestbookShow');
+Route::get('guestbook', 'GuestbookController@guestbook');
 
 Route::post('guestbook', 'GuestbookController@store')->name('entryStore');
 
@@ -35,11 +35,9 @@ Route::get('myblog', 'MyblogController@myblog');
 
 Route::get('photo', 'PhotoController@photo');
 
-Route::get('registration', 'RegistrationController@registration');
+Route::resource('registration', 'RegistrationController');
 
-Route::post('registration', 'RegistrationController@addUser')->name('registrate');
-
-Route::resource('checklogin', 'CheckloginController', ['only'=>['store']]);
+Route::resource('checklogin', 'CheckloginController');
 
 Route::get('study', 'StudyController@study');
 
@@ -49,9 +47,7 @@ Route::get('admin', 'Admin\IndexAdminController@index');
 
 Route::post('admin', 'Admin\IndexAdminController@auth')->name('adminAuthorize');
 
-Route::get('admin_blogeditor', 'Admin\BlogeditorAdminController@blogeditor');
-
-Route::resource('article', 'Admin\ArticleAdminController', ['only'=>['store','destroy']]);
+Route::resource('admin_blogeditor', 'Admin\BlogeditorAdminController');
 
 Route::get('admin_blogloadfile', 'Admin\BlogloadfileAdminController@blogloadfile');
 
