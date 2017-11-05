@@ -8,6 +8,8 @@
                     {{csrf_field()}}
                 </form>
 				@if($message)
+                    <div class="message-blog">
 					{!!$message!!}
+                    </div>
 				@endif
 @endsection

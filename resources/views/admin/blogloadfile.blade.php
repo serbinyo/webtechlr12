@@ -1,6 +1,5 @@
 @extends('layouts.admin-layout')
 @section('admincontent')
-
                 <h2> Форма для загрузки публикаций в блог </h2>
 
                 <form action="{{route('blogLoad')}}" class="form-fileload" method="post" enctype="multipart/form-data">
