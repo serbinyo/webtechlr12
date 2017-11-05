@@ -3,11 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use Validator;
-
 use Response;
-
 use App\Comment;
 
 class CommentController extends Controller
@@ -38,26 +34,18 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Comment $commentModel)
     {
     	$data = $request->except('_token');
-			
-	    $validator = Validator::make($data,
-	    	[
-				'body'=>'required'
-			]);
-			
-		if ($validator->fails()) {
-			return Response::json(['error'=>$validator->errors()->all()]);
-		}
-		
-		$comment = new Comment($data);
-		$comment->date = date("Y-m-d H:i:s");
-		$comment->save();
-		
-		$view_comment = view('one_comment')->with('comment', $comment)->render();
-		    	 
-        return Response::json(['success'=>true, 'comment'=>$view_comment]);
+        $comment_data = $commentModel->storeAndShow($data);
+        if (is_string($comment_data))
+        {
+            return Response::json(['success'=>true, 'comment'=>$comment_data]);
+        }
+        else
+        {
+            return $comment_data;
+        }
         exit();
     }
 

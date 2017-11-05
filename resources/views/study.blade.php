@@ -70,16 +70,17 @@
                             <td>0</td>
                             <td>52</td>
                             <td>77</td>
-                        </tr>	
-                    <td>5</td>
-                    <td class="tdleft"><a href="testpage">Основы программирования и <br/>алгоритмические языки</a></td>
-                    <td>ИС</td>
-                    <td>405</td>
-                    <td>210</td>
-                    <td>105</td>
-                    <td>87</td>
-                    <td>18</td>
-                    <td>195</td>
+                        </tr>
+                    <tr>
+                        <td>5</td>
+                        <td class="tdleft"><a href="testpage">Основы программирования и <br/>алгоритмические языки</a></td>
+                        <td>ИС</td>
+                        <td>405</td>
+                        <td>210</td>
+                        <td>105</td>
+                        <td>87</td>
+                        <td>18</td>
+                        <td>195</td>
                     </tr>					
                     <tr>
                         <td>6</td>
@@ -113,16 +114,17 @@
                         <td>88</td>
                         <td>0</td>
                         <td>130</td>
-                    </tr>	
-                    <td>9</td>
-                    <td class="tdleft">Основы электротехники и <br/>электроники</td>
-                    <td>ИС</td>
-                    <td>108</td>
-                    <td>72</td>
-                    <td>36</td>
-                    <td>18</td>
-                    <td>18</td>
-                    <td>36</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td class="tdleft">Основы электротехники и <br/>электроники</td>
+                        <td>ИС</td>
+                        <td>108</td>
+                        <td>72</td>
+                        <td>36</td>
+                        <td>18</td>
+                        <td>18</td>
+                        <td>36</td>
                     </tr>					
                     <tr>
                         <td>10</td>

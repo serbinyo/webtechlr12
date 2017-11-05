@@ -1,68 +1,47 @@
 @extends('layouts.main-layout')
 
 @section('content')
-	<div class="blog_addcontainer">
-		<h3>
-			Форма добавления сообщения
-		</h3>
-		<form action="{{route('entryStore')}}" method="post"  class="form">
-
-			<div class="form-group">
-				<label class="control-label">
-					ФИО:*
-				</label>
-				<div class="form-element">
-					<input type="text" class="inp" name="fio" id="fio" title='Обязательно к заполнению' />
-				</div>
-				<div class="clr">
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label class="control-label">
-					Email:*
-				</label>
-				<div class="form-element">
-					<input type="text" name="email" class="inp" id="email" title='Обязательно к заполнению' />
-				</div>
-				<div class="clr">
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label class="control-label">
-					Текст сообщения:*
-				</label>
-				<div class="form-element">
-					<textarea name="body" id="body" class="inp" rows="5" title="Обязательно к заполнению">
-					</textarea>
-				</div>
-				<div class="clr">
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label class="control-label">
-					&nbsp;
-				</label>
-				<div class="form-element">
-					<input type="submit" class="form-btn" value="Опубликовать" />
-					<input type="reset" id="opener" class="form-btn-clear" value="Очистить форму" />
-				</div>
-				<div class="clr">
-				</div>
-			</div>
-			
-			<!--Защита от CSRF атак-->
-			{{ csrf_field() }}
-			<!--Функция добавляет следующий код на сайт
-			<input type="hidden" name="_token" value="kjsgliauehgKLNGFD"/>
-			в поле value сохраняется случайная строка и она же сохраняется в сессии.
-			Если при отправке строки не равны генерируется исключение
-			-->
-			
-		</form>
-	</div>
-
-	{!!$table!!}
+    <div class="blog_addcontainer">
+        <h3>
+            Форма добавления сообщения
+        </h3>
+        {!! Form::open(['url'=> route('entryStore'),'class'=>'form']) !!}
+        <div class="form-group">
+            {!! Form::label('fio', 'ФИО:*',['class' =>'control-label']) !!}
+            <div class="form-element">
+                {!! Form::text('fio', null, ['class' =>'inp', 'id' => 'fio', 'title' => 'Обязательно к заполнению']) !!}
+            </div>
+            <div class="clr"></div>
+        </div>
+        <div class="form-group">
+            {!! Form::label('email', 'Email:*', ['class' =>'control-label']) !!}
+            <div class="form-element">
+                {!! Form::email('email', null, ['class' =>'inp', 'id' => 'email', 'title' => 'Обязательно к заполнению']) !!}
+            </div>
+            <div class="clr"></div>
+        </div>
+        <div class="form-group">
+            {!! Form::label('body', 'Текст сообщения:*', ['class' =>'control-label']) !!}
+            <div class="form-element">
+                {!! Form::textarea('body', null, [
+                    'id' => 'body',
+                    'class' => 'inp',
+                    'rows'=> '5',
+                    'title' => "Обязательно к заполнению"])
+                !!}
+            </div>
+            <div class="clr"></div>
+        </div>
+        <div class="form-group">
+            {!! Form::label('sub', '&nbsp;',['class' =>'control-label']) !!}
+            <div class="form-element">
+                {!! Form::submit('Опубликовать', ['class'=>'form-btn']) !!}
+                {!! Form::reset('Очистить форму', ['class'=>'form-btn-clear', 'id'=>'opener']) !!}
+            </div>
+            <div class="clr">
+            </div>
+        </div>
+        {!! Form::close() !!}
+    </div>
+    {!!$table!!}
 @endsection

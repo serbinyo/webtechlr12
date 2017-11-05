@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 class InterestsController extends Controller
 {
-    public function interests(){
+    public function interests()
+    {
 		return view('interests')->with(['user'=> $this->user]);
 	}
 }

@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-
-use Illuminate\Support\Facades\DB;
+use App\Statistic;
 
 class StatisticsAdminController extends AdminController
 {
-    public function statistics()
+    public function statistics(Statistic $statisticModel)
 	{
-		$statistics = DB::table('Statistics')->orderBy('date', 'desc')->paginate(25);
+		$statistics = $statisticModel->show();
 		return view('admin.statistics')->with(['admin'=>$this->admin, 'adminsPassFile'=>$this->adminsPassFile, 'statistics'=>$statistics]);
 	}
 }

@@ -10,15 +10,13 @@
 
 <div class='blog_container'>
 	<div class='blog_title'>
-		<h3>
 			{{$article->title}}
-		</h3>
 	</div>
 	<div class='blog_image'>
 		<img src='{{$article->image}}' width='250' alt='{{$article->image}}'/>
 	</div>
 	<div class='blog_body'>
-		{{$article->body}}
+		{!! nl2br($article->body) !!}
 	</div>
 	<div class='blog_date'>
 		Дата публикации: {{$article->date}}

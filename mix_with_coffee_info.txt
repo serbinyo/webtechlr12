@@ -1,0 +1,22 @@
+в директории с проектом выполнить
+npm install
+npm install coffeescript --save-dev
+npm install coffee-loader --save-dev  
+// параметр --save-dev помимо установки пакета добавит зависимость в ваш файл package.json
+
+в файл webpack.mix.js добавить что то вроде:
+mix.sass('resources/assets/sass/style.scss', 'public/css')
+	.js('resources/assets/js/main.coffee', 'public/js')
+   .webpackConfig({
+        module: {
+            rules: [
+                { test: /\.coffee$/, loader: 'coffee-loader' }
+            ]
+        }
+   });
+   
+компилировать командой
+npm run dev
+
+компилировать и отслеживать изменения
+npm run watch-poll
