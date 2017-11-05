@@ -1,8 +1,8 @@
 @extends('layouts.main-layout')
 
-@section('content')                
+@section('content')
                 <section>				
-                    <h2>Сербин Александр</h2>
+                    <h2>Сербин Александр </h2>
                     <ul>
                         <li><strong>Дата рождения:</strong> 22 марта 1988</li>
                         <li><strong>Город:</strong> Севастополь</li>
