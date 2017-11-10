@@ -13,7 +13,7 @@
 			{{$article->title}}
 	</div>
 	<div class='blog_image'>
-		<img src='{{$article->image}}' width='250' alt='{{$article->image}}'/>
+		<img src='{{$article->image}}' width='' alt='{{$article->image}}'/>
 	</div>
 	<div class='blog_body'>
 		{!! nl2br($article->body) !!}

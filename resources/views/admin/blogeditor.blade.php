@@ -56,7 +56,7 @@
             <div class="blog_container" id="article{{$article->id}}">
                 <div class='blog_title' id='ttl{{$article->id}}'>{{$article->title}}</div>
                 <div class='blog_image'>
-                    <img src='{{$article->image}}' id='img{{$article->id}}' width='250' alt='{{$article->image}}'/>
+                    <img src='{{$article->image}}' id='img{{$article->id}}' width='' alt='{{$article->image}}'/>
                 </div>
                 <div class='blog_body' id='bdy{{$article->id}}'>{!!nl2br($article->body)!!}</div>
                 <div class='blog_date'>{{$article->date}}</div>
