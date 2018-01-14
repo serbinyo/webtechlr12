@@ -516,3 +516,12 @@ a.stad_photo:hover img {
   z-index: 5005;
 }
 
+.exam {
+    color:#2C8DB8;
+    font-size: large;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+    margin: 20px 330px 50px;
+}
+

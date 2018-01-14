@@ -41,6 +41,8 @@ Route::resource('checklogin', 'CheckloginController');
 
 Route::get('study', 'StudyController@study');
 
+Route::get('exam', 'ExamController@index');
+
 Route::resource('comment', 'CommentController', ['only'=>['store']] );
 
 Route::get('admin', 'Admin\IndexAdminController@index');

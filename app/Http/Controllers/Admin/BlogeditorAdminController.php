@@ -54,8 +54,8 @@ class BlogeditorAdminController extends AdminController
                 }
             } else
             {
-                $newArticle = $blogarticleModel->saveArticle($data);
-                $view_article = view('one_article')->with('article', $newArticle)->render();
+
+                $view_article = view('one_article')->with('article', $response)->render();
                 return Response::json(['success'=>true, 'article'=>$view_article]);
             }
         }
