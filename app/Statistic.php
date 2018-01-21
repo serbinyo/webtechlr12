@@ -39,20 +39,20 @@ class Statistic extends Model
         $exam = DB::table('Statistics')->where('page', '/exam')->count();
 
 
-        $report = [
-            $index => 'index',
-            $study => 'study',
-            $photo => 'photo',
-            $interests => 'interests',
-            $about => 'about',
-            $contact => 'contact',
-            $myblog => 'myblog',
-            $guestbook => 'guestbook',
-            $stat => 'stat',
-            $exam => 'exam'
-        ];
-        
-        krsort($report);
+        $report = [];
+
+        $report += ['index' => $index];
+        $report += ['study' => $study];
+        $report += ['photo' => $photo];
+        $report += ['interests' => $interests];
+        $report += ['about' => $about];
+        $report += ['contact' => $contact];
+        $report += ['myblog' => $myblog];
+        $report += ['guestbook' => $guestbook];
+        $report += ['stat' => $stat];
+        $report += ['exam' => $exam];
+
+        arsort($report);
         return $report;
     }
 }

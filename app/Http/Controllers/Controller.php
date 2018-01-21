@@ -18,7 +18,7 @@ class Controller extends BaseController
 	public function __construct(User $userModel, Statistic $statisticModel)
 	{
         session_start();
-        $statisticModel->add_guest_statistic();
+        //$statisticModel->add_guest_statistic();
 		$this->user = $userModel::findUser();
 	}
 }
