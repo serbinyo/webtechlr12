@@ -1,6 +1,6 @@
 @extends('layouts.main-layout')
 @section('links')
-    <script type="text/javascript" src="../../public/js/jq/jquery.js"></script>
+    <script src="../../public/js/jquery-ui/external/jquery/jquery.js"></script>
     <script type="text/javascript" src="../../public/js/registrate_login-check.js"></script>
 @endsection
 @section('content')

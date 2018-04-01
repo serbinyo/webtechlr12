@@ -1,7 +1,7 @@
 @extends('layouts.admin-layout')
 @section('links')
-    <script type="text/javascript" src="../../public/js/jq/jquery.js"></script>
-    <script type="text/javascript" src="../../public/js/articles.js"></script>
+    <script type="text/javascript" src="../../../public/js/jquery-ui/external/jquery/jquery.js"></script>
+    <script type="text/javascript" src="../../../public/js/articles.js"></script>
 @endsection
 
 @section('admincontent')

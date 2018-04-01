@@ -2,24 +2,11 @@
 
 @section('links')
 
-    <link rel="stylesheet" type="text/css" href="../../public/js/jquery-ui-1.9.2/themes/base/jquery.ui.all.css"/>
-    <script src="../../public/js/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="../../public/js/bower_components/jquery-validation/dist/jquery.validate.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../public/js/jquery-ui/jquery-ui.css"/>
+    <script src="../../public/js/jquery-ui/external/jquery/jquery.js"></script>
+    <script src="../../public/js/jquery.validate.js"></script>
     <script src="../../public/js/custom.js"></script>
-    <script src="../../public/js/jquery-ui-1.9.2/ui/jquery.ui.core.js"></script>
-    <script src="../../public/js/jquery-ui-1.9.2/ui/jquery.ui.widget.js"></script>
-    <script src="../../public/js/jquery-ui-1.9.2/ui/jquery.ui.button.js"></script>
-    <script src="../../public/js/jquery-ui-1.9.2/ui/jquery.ui.mouse.js"></script>
-    <script src="../../public/js/jquery-ui-1.9.2/ui/jquery.ui.draggable.js"></script>
-    <script src="../../public/js/jquery-ui-1.9.2/ui/jquery.ui.position.js"></script>
-    <script src="../../public/js/jquery-ui-1.9.2/ui/jquery.ui.resizable.js"></script>
-    <script src="../../public/js/jquery-ui-1.9.2/ui/jquery.ui.datepicker.js"></script>
-    <script src="../../public/js/jquery-ui-1.9.2/ui/i18n/jquery.ui.datepicker-ru.js"></script>
-    <script src="../../public/js/jquery-ui-1.9.2/ui/jquery.ui.tooltip.js"></script>
-    <script src="../../public/js/jquery-ui-1.9.2/ui/jquery.ui.dialog.js"></script>
-    <script src="../../public/js/jquery-ui-1.9.2/ui/jquery.ui.effect.js"></script>
-    <script src="../../public/js/jquery-ui-1.9.2/ui/jquery.ui.effect-blind.js"></script>
-    <script src="../../public/js/jquery-ui-1.9.2/ui/jquery.ui.effect-explode.js"></script>
+    <script src="../../public/js/jquery-ui/jquery-ui.min.js"></script>
 
 @endsection
 
