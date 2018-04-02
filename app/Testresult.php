@@ -4,15 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Validator;
 
 class testresult extends Model
 {
     public $timestamps = false;
     protected $fillable = ['date','fio','groupname','answer1','result1','answer2','result2','answer3','result3','mark'];
 
-    public function show($request)
+    public function show($data)
     {
-        $this->validate($request,
+        $validator = Validator::make($data,
             [
                 'fior'=>[
                     'required',
@@ -26,16 +27,19 @@ class testresult extends Model
                 'fior.exists'=>'Персона не найдена'
             ]);
 
-        $data        = $request->all();
+        if ($validator->fails()) {
+            return ['errors' => $validator->errors()];
+        }
+
         $fio         = htmlspecialchars(trim($data['fior']));
         $testresults = DB::table('testresults')->where('fio',$fio)->orderBy('date', 'desc')->get();
 
         return $testresults;
     }
 
-    public function store($request)
+    public function store($data)
     {
-        $this->validate($request,
+        $validator = Validator::make($data,
             [
                 'fio_php'=>['required','regex:/^[а-яА-Я_]+\s[а-яА-Я_]+\s[а-яА-Я_]+$/ui'],
                 'groupname'=>'required',
@@ -53,7 +57,10 @@ class testresult extends Model
                 'ans3_php.required'=>'Необходимо выбрать ответ на вопрос 3'
             ]);
 
-        $data       = $request->all();
+        if ($validator->fails()) {
+            return ['errors' => $validator->errors()];
+        }
+
         $res        = $this->CountTestResult($data);
         $date       = date("Y-m-d H:i:s");
 

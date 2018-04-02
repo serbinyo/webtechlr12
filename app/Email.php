@@ -3,12 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Validator;
 
 class Email extends Model
 {
-    public function send($request){
+    public function send($data){
 
-        $this->validate($request,
+        $validator = Validator::make($data,
             [
                 'fio'=>['required','regex:/^[а-яА-Я_]+\s[а-яА-Я_]+\s[а-яА-Я_]+$/ui'],
                 'gender'=>'required',
@@ -33,7 +34,9 @@ class Email extends Model
 
             ]);
 
-        $data = $request->all();
+        if ($validator->fails()) {
+            return ['errors' => $validator->errors()];
+        }
 
         $this->sendMail($data);
     }

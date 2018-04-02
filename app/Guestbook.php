@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Validator;
 
 class Guestbook extends Model
 {
@@ -32,9 +33,9 @@ class Guestbook extends Model
         return $tbl;
     }
 
-    public function store($request)
+    public function store($data)
     {
-        $this->validate($request,
+        $validator = Validator::make($data,
             [
                 'fio' => ['required','regex:/^[а-яА-Я_]+\s[а-яА-Я_]+\s[а-яА-Я_]+$/ui'],
                 'email' => 'required|email',
@@ -48,7 +49,9 @@ class Guestbook extends Model
                 'body.required'  => 'Необходимо написать сообщение',
             ]);
 
-        $data = $request->all();
+        if ($validator->fails()) {
+            return ['errors' => $validator->errors()];
+        }
 
         $entry = $this->addNewEntry($data);
         $this->messageToFile($entry);

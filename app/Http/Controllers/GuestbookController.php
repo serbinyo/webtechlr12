@@ -15,7 +15,11 @@ class GuestbookController extends Controller
 
 	public function store(Request $request, Guestbook $guestbookModel)
     {
-        $guestbookModel->store($request);
+        $data = $request->except('_token');
+        $response = $guestbookModel->store($data);
+        if (is_array($response) && array_key_exists('errors', $response)) {
+            return back()->withInput()->withErrors($response['errors']);
+        }
         return redirect('guestbook');
     }
 }

@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Response;
+use Validator;
 
 class User extends Model
 {
@@ -69,10 +70,10 @@ class User extends Model
         }
     }
 
-    public function login($request)
+    public function login($data)
     {
-        $request['passwd'] = md5($request['passwd']);
-        $this->validate($request,
+        $data['passwd'] = md5($data['passwd']);
+        $validator = Validator::make($data,
             [
                 'login'=>[
                     'required',
@@ -89,7 +90,9 @@ class User extends Model
                 'passwd.required'=>'Необходимо указать пароль',
                 'passwd.exists'=>'Неверный пароль, попробуйте еще раз'
             ]);
-        $data        = $request->all();
+        if ($validator->fails()) {
+            return ['errors' => $validator->errors()];
+        }
         $_SESSION['login'] = htmlspecialchars(trim($data['login']));
         $_SESSION['passwd'] = htmlspecialchars(trim($data['passwd']));
     }

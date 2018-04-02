@@ -16,7 +16,10 @@ class IndexController extends Controller
 	{
 		$data = $request->all();
 		if(array_key_exists('go', $data)){
-			$userModel->login($request);
+            $response = $userModel->login($data);
+            if (is_array($response) && array_key_exists('errors', $response)) {
+                return back()->withInput()->withErrors($response['errors']);
+            }
 		}
 		else{
             $userModel->logout();
